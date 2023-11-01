@@ -1,45 +1,19 @@
 import Header from './componets/Header';
-import CoreConecpt, {
-  CoreConceptsList,
-  CoreConceptsWrapper,
-} from './componets/CoreConecpt';
 import { CORE_CONCEPTS } from './data';
 import styled from 'styled-components';
 
-import { useState } from 'react';
-import Examples, { ExamplesMenu, ExamplesWrapper } from './componets/Examples';
+import CoreConcepts from './componets/CoreConcepts';
+import Examples from './componets/Examples';
 
 const App = () => {
-  const [selectedTab, setSelectedTab] = useState('Components');
-
-  const handleClick = (tabName: string) => {
-    setSelectedTab(tabName);
-    console.log(tabName);
-  };
   return (
     <>
       <Header
         image={{ src: CORE_CONCEPTS[0].image, alt: 'Stylized atom' }}
       ></Header>
       <MainStyled>
-        <CoreConceptsWrapper>
-          <CoreConceptsList>
-            {CORE_CONCEPTS.map(({ title, description, image }, index) => (
-              <CoreConecpt
-                key={index}
-                title={title}
-                description={description}
-                image={{ src: image, alt: title }}
-              />
-            ))}
-          </CoreConceptsList>
-        </CoreConceptsWrapper>
-        <ExamplesWrapper>
-          <h2>Examples</h2>
-          <ExamplesMenu>
-            <Examples selectedTab={selectedTab} handleClick={handleClick} />
-          </ExamplesMenu>
-        </ExamplesWrapper>
+        <CoreConcepts />
+        <Examples />
       </MainStyled>
     </>
   );

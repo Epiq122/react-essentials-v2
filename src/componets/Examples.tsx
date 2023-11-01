@@ -1,77 +1,22 @@
-import { StyledTabButton } from './TabButton';
-import { EXAMPLES } from '../data';
-import { FC } from 'react';
-import styled from 'styled-components';
+import { useState } from 'react';
+import Example, { ExampleWrapper, ExampleMenu } from './Example';
+import Section from './Section';
 
-interface ExampleProps {
-  selectedTab: string;
-  handleClick: (tabName: string) => void;
-}
-
-interface Example {
-  title: string;
-  description: string;
-  code: string;
-}
-
-const Examples: FC<ExampleProps> = ({ selectedTab, handleClick }) => {
-  const selectedExample = EXAMPLES.find(
-    (example) => example.title === selectedTab,
-  );
+const Examples = () => {
+  const [selectedTab, setSelectedTab] = useState<string>('Components');
+  const handleClick = (tabName: string) => {
+    setSelectedTab(tabName);
+    console.log(tabName);
+  };
   return (
-    <div>
-      {EXAMPLES.map((example: Example) => (
-        <StyledTabButton
-          key={example.title}
-          onClick={() => handleClick(example.title)}
-          selected={selectedTab === example.title}
-        >
-          {example.title}
-        </StyledTabButton>
-      ))}
-      {selectedExample && (
-        <TabContent>
-          <h3>{selectedExample.title}</h3>
-          <p>{selectedExample.description}</p>
-          <pre>{selectedExample.code}</pre>
-        </TabContent>
-      )}
-    </div>
+    <Section title='Examples'>
+      <ExampleWrapper>
+        <ExampleMenu>
+          <Example selectedTab={selectedTab} handleClick={handleClick} />
+        </ExampleMenu>
+      </ExampleWrapper>
+    </Section>
   );
 };
+
 export default Examples;
-
-export const ExamplesWrapper = styled.section`
-  margin: 3rem auto;
-
-  h2 {
-    text-align: left;
-  }
-`;
-
-export const ExamplesMenu = styled.menu`
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 6px;
-  background-color: transparent;
-  color: #a18aba;
-  font-family: 'Roboto Condensed', sans-serif;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-`;
-
-const TabContent = styled.div`
-  padding: 1rem;
-  border-radius: 6px;
-  background-color: #2f1d43;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-
-  h3 {
-    margin: 0;
-  }
-
-  code {
-    font-size: 1rem;
-  }
-`;

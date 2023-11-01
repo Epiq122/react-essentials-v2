@@ -17,6 +17,7 @@ const TabButton: FC<TabButtonProps> = ({ children, onClick }) => {
 export default TabButton;
 
 export const StyledTabButton = styled.button<{ selected: boolean }>`
+  margin-bottom: 2rem;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 6px;

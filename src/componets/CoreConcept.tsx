@@ -7,7 +7,7 @@ interface CoreConceptProps {
   image: { src: string; alt: string };
 }
 
-const CoreConecpt: FC<CoreConceptProps> = ({ title, description, image }) => {
+const CoreConcept: FC<CoreConceptProps> = ({ title, description, image }) => {
   return (
     <CoreConceptsItem>
       <img src={image.src} alt={image.alt} />
@@ -16,7 +16,6 @@ const CoreConecpt: FC<CoreConceptProps> = ({ title, description, image }) => {
     </CoreConceptsItem>
   );
 };
-export default CoreConecpt;
 
 export const CoreConceptsWrapper = styled.section`
   padding: 2rem;
@@ -53,3 +52,5 @@ export const CoreConceptsList = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
 `;
+
+export default CoreConcept;
